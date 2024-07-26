@@ -1,13 +1,8 @@
 .App {
-  margin: 0 auto;
-  padding: 4rem 2rem;
   text-align: center;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
+
+  background: url('./assets/bg-main.jpg') no-repeat 50% 50%;
+  background-size: cover;
 }
 html {
   font-size: 10px;
@@ -31,6 +26,20 @@ h2 {
   margin-bottom: 2rem;
   font-size: 2rem;
 }
+
+.inner {
+  background: radial-gradient(black, transparent);
+  backdrop-filter: blur(5px);
+  padding: 4rem 2rem;
+  margin: 0 auto;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
 .card-container {
   position: relative;
 }
@@ -44,7 +53,7 @@ h2 {
 }
 
 .card-container li {
-  background-color: antiquewhite;
+  background-color: #dac7ad;
   color: #fff;
   display: flex;
   align-items: center;
@@ -54,7 +63,14 @@ h2 {
   transition: transform 0.3s;
   transform: perspective(800px) rotateY(0deg);
   transform-style: preserve-3d;
-  box-shadow: 1px 2px 5px rgb(204 187 168);
+}
+.card-container li::after {
+  content: '';
+  width: 80%;
+  height: 80%;
+  border: 2px solid #f9e7cd;
+  border-radius: 1rem;
+  position: absolute;
 }
 .card-container li.active {
   background-color: darkorange;

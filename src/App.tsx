@@ -25,14 +25,14 @@ function App() {
     // 선택한 카드가 2개가 될때까지 추가
     if (compareCard.length < 2) {
       setCompareCard((prevData) => [...prevData, { name: item, idx: idx }]);
-    }
 
-    // 선택한 카드 true로 값변경 (선택한 카드의 숫자를 일단 보여줌)
-    setCheckClear((prevData) => {
-      const data = [...prevData];
-      data[idx] = true;
-      return data;
-    });
+      // 선택한 카드 true로 값변경 (선택한 카드의 숫자를 일단 보여줌)
+      setCheckClear((prevData) => {
+        const data = [...prevData];
+        data[idx] = true;
+        return data;
+      });
+    }
   };
 
   // settimeout promise
@@ -115,28 +115,30 @@ function App() {
 
   return (
     <div className="App">
-      <h2>제한시간 40초 안에 같은 숫자의 카드를 짝지어주세요</h2>
-      <p>
-        Play Time : <span>{playTime}</span> 초
-      </p>
-      <div className="card-container">
-        <ul>
-          {cardArr.map((item, idx) => (
-            <li key={idx} onClick={() => handleSelectCard(item, idx)} className={checkClear[idx] ? 'active' : ''}>
-              <div className="card-back">{item}</div>
-            </li>
-          ))}
-        </ul>
-        {/* 시간이 0초 인경우 게임오버 */}
-        {playTime === 0 && <div className="game-over">Game Over</div>}
-        {/* 모든 문제를 다 맞춘 경우 */}
-        {complateCard.length === cardArr.length / 2 && <div className="game-over">You Win!!</div>}
+      <div className="inner">
+        <h2>제한시간 40초 안에 같은 숫자의 카드를 짝지어주세요</h2>
+        <p>
+          Play Time : <span>{playTime}</span> 초
+        </p>
+        <div className="card-container">
+          <ul>
+            {cardArr.map((item, idx) => (
+              <li key={idx} onClick={() => handleSelectCard(item, idx)} className={checkClear[idx] ? 'active' : ''}>
+                <div className="card-back">{item}</div>
+              </li>
+            ))}
+          </ul>
+          {/* 시간이 0초 인경우 게임오버 */}
+          {playTime === 0 && <div className="game-over">Game Over</div>}
+          {/* 모든 문제를 다 맞춘 경우 */}
+          {complateCard.length === cardArr.length / 2 && <div className="game-over">You Win!!</div>}
+        </div>
+        {!isPlayStart && (
+          <button type="button" onClick={handleFlipCard}>
+            Start
+          </button>
+        )}
       </div>
-      {!isPlayStart && (
-        <button type="button" onClick={handleFlipCard}>
-          Start
-        </button>
-      )}
     </div>
   );
 }
